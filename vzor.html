@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>U Silvy</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #1a4b8c;
+        --secondary-color: #d4af37;
+        --light-color: #f8f9fa;
+        --dark-color: #333;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--dark-color);
+      }
+
+      /* Header a navigace */
+      .navbar {
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        color: var(--primary-color);
+        font-size: 1.8rem;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--dark-color) !important;
+        margin: 0 10px;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      /* Hero sekce */
+      .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1529260830199-42c24126f198?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1776&q=80")
+            no-repeat center center;
+        background-size: cover;
+        height: 80vh;
+        display: flex;
+        align-items: center;
+        color: white;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .btn-primary-custom {
+        background-color: var(--secondary-color);
+        border: none;
+        padding: 12px 30px;
+        font-weight: 600;
+        border-radius: 30px;
+        transition: all 0.3s;
+      }
+
+      .btn-primary-custom:hover {
+        background-color: #b8941f;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Sekce */
+      .section-padding {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        color: var(--primary-color);
+        position: relative;
+      }
+
+      .section-title:after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: var(--secondary-color);
+      }
+
+      /* About us */
+      .about-img {
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.5s;
+      }
+
+      .about-img:hover {
+        transform: scale(1.03);
+      }
+
+      /* Guest book */
+      .testimonial-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        transition: transform 0.3s;
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+
+      .testimonial-author {
+        font-weight: 600;
+        color: var(--primary-color);
+      }
+
+      /* Stories */
+      .story-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .story-img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.5s;
+      }
+
+      .story-card:hover .story-img {
+        transform: scale(1.1);
+      }
+
+      .story-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        color: white;
+        padding: 20px;
+      }
+
+      /* Kontakt */
+      .contact-info {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .contact-icon {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+      }
+
+      .contact-form {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 50px 0 20px;
+      }
+
+      .footer-links a {
+        color: #ccc;
+        text-decoration: none;
+        margin-right: 15px;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: var(--secondary-color);
+      }
+
+      .social-icons a {
+        color: white;
+        font-size: 1.2rem;
+        margin-right: 15px;
+        transition: color 0.3s;
+      }
+
+      .social-icons a:hover {
+        color: var(--secondary-color);
+      }
+
+      /* Animace */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s, transform 0.8s;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigace -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">U Silvy</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#guest-book">Guest Book</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#stories">Stories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Home/Hero sekce -->
+    <section id="home" class="hero-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h1 class="hero-title">Objevte krásy Itálie</h1>
+            <p class="hero-subtitle">
+              Nezapomenutelné zážitky z jedné z nejkrásnějších zemí světa
+            </p>
+            <a href="#about" class="btn btn-primary-custom">Zjistit více</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="section-padding">
+      <div class="container">
+        <h2 class="section-title text-center">About Us</h2>
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1794&q=80"
+              alt="About Us"
+              class="img-fluid about-img"
+            />
+          </div>
+          <div class="col-lg-6">
+            <h3 class="mb-4">Naše vášeň pro italskou kulturu</h3>
+            <p class="mb-4">
+              Jsme skupina nadšenců, kteří milují Itálii a její bohatou kulturu,
+              historii a gastronomii. Naše mise je sdílet tuto lásku s vámi
+              prostřednictvím autentických zážitků, které vás zavedou za hranice
+              běžného turismu.
+            </p>
+            <p class="mb-4">
+              S více než 10 lety zkušeností v oboru jsme vytvořili sít lokálních
+              průvodců a partnerů, kteří nám pomáhají vytvářet nezapomenutelné
+              zážitky pro naše klienty.
+            </p>
+            <a href="#contact" class="btn btn-primary-custom"
+              >Kontaktujte nás</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guest Book -->
+    <section id="guest-book" class="section-padding bg-light">
+      <div class="container">
+        <h2 class="section-title text-center">Guest Book</h2>
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="testimonial-card fade-in">
+              <p class="testimonial-text">
+                "Nejlepší dovolená mého života! Průvodce byl výborný, jídlo
+                úžasné a místa, která jsme navštívili, byla dechberoucí. Určitě
+                se vrátíme!"
+              </p>
+              <p class="testimonial-author">- Jana Nováková</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="testimonial-card fade-in">
+              <p class="testimonial-text">
+                "Perfektně zorganizovaný zájezd. Všechno klapalo jako hodinky.
+                Oceňuji individuální přístup a flexibilitu při plánování
+                programu."
+              </p>
+              <p class="testimonial-author">- Petr Svoboda</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="testimonial-card fade-in">
+              <p class="testimonial-text">
+                "Itálie je nádherná země, ale s tímto průvodcem jsme viděli
+                místa, která bychom sami nikdy nenašli. Skvělý zážitek pro celou
+                rodinu!"
+              </p>
+              <p class="testimonial-author">- Marie Kovářová</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stories -->
+    <section id="stories" class="section-padding">
+      <div class="container">
+        <h2 class="section-title text-center">Stories</h2>
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="story-card fade-in">
+              <img
+                src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                alt="Řím"
+                class="story-img"
+              />
+              <div class="story-content">
+                <h4>Ztracen v Římě</h4>
+                <p>Objevte skryté poklady Věčného města</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="story-card fade-in">
+              <img
+                src="https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1794&q=80"
+                alt="Toskánsko"
+                class="story-img"
+              />
+              <div class="story-content">
+                <h4>Víno a slunce Toskánska</h4>
+                <p>Gastronomická cesta srdcem Itálie</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="story-card fade-in">
+              <img
+                src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1776&q=80"
+                alt="Benátky"
+                class="story-img"
+              />
+              <div class="story-content">
+                <h4>Benátky bez davů</h4>
+                <p>Romantické zákoutí Města na vodě</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section-padding bg-light">
+      <div class="container">
+        <h2 class="section-title text-center">Contact</h2>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="contact-info">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <h4>Adresa</h4>
+              <p>Italská 123<br />Praha 1, 110 00</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="contact-info">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <h4>Telefon</h4>
+              <p>+420 123 456 789</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="contact-info">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h4>Email</h4>
+              <p>info@usilvy.cz</p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+          <div class="col-lg-8">
+            <div class="contact-form fade-in">
+              <form>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Jméno"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="Email"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Předmět"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    placeholder="Zpráva"
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary-custom">
+                  Odeslat zprávu
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h5>U Silvy</h5>
+            <p>
+              Objevte s námi krásy Itálie. Nabízíme autentické zážitky a
+              nezapomenutelné cestovatelské okamžiky.
+            </p>
+          </div>
+          <div class="col-lg-3">
+            <h5>Rychlé odkazy</h5>
+            <div class="footer-links">
+              <a href="#home">Home</a><br />
+              <a href="#about">About Us</a><br />
+              <a href="#guest-book">Guest Book</a><br />
+              <a href="#stories">Stories</a><br />
+              <a href="#contact">Contact</a>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <h5>Sledujte nás</h5>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <hr class="mt-4 mb-4" />
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p>&copy; 2025 U Silvy. Všechna práva vyhrazena.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Jednoduchá animace při scrollování
+      document.addEventListener("DOMContentLoaded", function () {
+        const fadeElements = document.querySelectorAll(".fade-in");
+
+        const fadeInOnScroll = function () {
+          fadeElements.forEach((element) => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+
+            if (elementTop < window.innerHeight - elementVisible) {
+              element.classList.add("visible");
+            }
+          });
+        };
+
+        // Spustit při načtení stránky
+        fadeInOnScroll();
+
+        // Spustit při scrollování
+        window.addEventListener("scroll", fadeInOnScroll);
+
+        // Hladký scroll pro navigační odkazy
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 70,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // Změna vzhledu navigace při scrollování
+        window.addEventListener("scroll", function () {
+          const navbar = document.querySelector(".navbar");
+          if (window.scrollY > 50) {
+            navbar.classList.add("navbar-scrolled");
+          } else {
+            navbar.classList.remove("navbar-scrolled");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
